@@ -1,32 +1,41 @@
 'use strict';
 
-const randomNumber = Math.ceil(Math.random() * 100);
-console.log(randomNumber);
-let enteredNumber = +prompt(`Угадай число от 1 до 100`);
+const num = Math.floor(Math.random() * 100);
 
-console.log(enteredNumber);
-for (let i = 1; i < Infinity; i++) {
-  if (enteredNumber < randomNumber) {
-    enteredNumber = +prompt(`БОЛЬШЕ, Пробуй еще`);
-  };
+const isNumber = function (numUser) {
+  return !isNaN(parseFloat(numUser)) && isFinite(numUser);
+};
 
-  if (enteredNumber > randomNumber) {
-    enteredNumber = +prompt(`МЕНЬШЕ, Пробуй еще`);
-  };
+function randomNum() {
+  const numUser = prompt("Введите число от 1 до 100", '');
 
-  if (enteredNumber == randomNumber) {
-    alert('Угадал');
+  if (numUser === null) {
+    return;
+  }
+
+  if (!isNumber(numUser)) {
+    alert('Введите число!');
+    return randomNum(numUser);
+  }
+
+  if (+numUser > num) {
+    alert('Меньше!');
+    return randomNum();
+  }
+
+  if (+numUser < num) {
+    alert('Больше!');
+    return randomNum();
+  }
+
+  if (+numUser === num) {
+    alert('Правильно!');
   }
 }
+randomNum();
 
-// () => {
-//   const randomArray = [];
 
-//   for (let i = 1; i <= elements; i++)
-//     randomArray.push(Math.round(Math.random() * 100));
 
-//   return randomArray;
-// }
 
-// console.log(`случайные числа от 1 до 100: "${randomNumberArray(10)}"`);
+
 
